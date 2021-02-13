@@ -1,0 +1,58 @@
+<div class="leaderboard">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th class="leaderboard-heading__rank heading center-col">#</th>
+        <th class="leaderboard-heading__player heading" style="width: 20%;">Name</th>
+        <th class="leaderboard-heading__played heading center-col mobile-hide">Played</th>
+        <th class="leaderboard-heading__won heading center-col">W<span class="mobile-hide">on</span></th>
+        <th class="leaderboard-heading__lost heading center-col">L<span class="mobile-hide">ost</span></th>
+        <th class="leaderboard-heading__diff heading center-col">+/-</th>
+        <th class="leaderboard-heading__win-percent heading center-col mobile-hide">Win&nbsp;%</th>
+        <th class="leaderboard-heading__win-percent heading center-col">Elo</th>
+        <th class="leaderboard-heading__form heading center-col mobile-hide" style="width: 20%;">Form</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% Object.values(standings).forEach(arr => { %>
+        <% arr.forEach((player, index) => { %>
+          <tr class="<%= player.ranked ? 'ranked' : 'unranked' %>">
+            <td class="center-col leaderboard__rank"<%= (index < 3) ? ` data-rank=${(index + 1)}` : '' %>>
+              <% if (!player.ranked) { %>
+                -
+              <% } else if (index < 3) { %>
+                <i class="fas fa-medal"></i>
+              <% } else { %>
+                #<%= (index + 1) %>
+              <% } %>
+            </td>
+            <td class="leaderboard__player">
+              <span class="mobile-hide"><%= player.name %></span>
+              <span class="desktop-hide"><%= player.name %></span>
+            </td>
+            <td class="center-col leaderboard__games-played mobile-hide"><%= player.stats.played %></td>
+            <td class="center-col leaderboard__games-won"><%= player.stats.won %></td>
+            <td class="center-col leaderboard__games-lost"><%= player.stats.lost %></td>
+            <td class="center-col leaderboard__point-diff"><%= player.stats.scoreDiff %></td>
+            <td class="center-col leaderboard__win-percent mobile-hide"><%= player.stats.winningPercent %>%</td>
+            <td class="center-col leaderboard__win-percent"><%= player.elo.current %></td>
+            <td class="center-col leaderboard__form mobile-hide">
+              <% player.stats.last5.forEach(result => { %>
+                <% let formClass = '' %>
+                <% if (player.ranked) { %>
+                  <% if (result === 1) { %>
+                    <% formClass = ' text-success' %>
+                  <% } else { %>
+                    <% formClass = ' text-danger' %>
+                  <% } %>
+                <% } %>
+                <i class="fas fa-<%= (result === 1) ? 'check' : 'times' %>-circle<%= formClass %>"></i>
+              <% }) %>
+            </td>
+          </tr>
+        <% }) %>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,80 @@
+<div class="container mt-3">
+  <%- include('./partials/messages') -%>
+
+  <form action="/matches/new" method="POST">
+    <input type="hidden" value="<%= user.id %>" id="created_by" name="created_by">
+
+    <div class="row">
+      <div class="input-group mb-3 col-md">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Player 1</span>
+        </div>
+
+        <select class="custom-select" id="p1" name="p1">
+          <option value="">Choose...</option>
+          <% players.forEach(player => { %>
+            <option value="<%= player.id %>"<%= (player.id === user.id) ? ' selected' : (typeof p1 != 'undefined' && p1 === player.id) ? ' selected' : '' %>><%= player.name %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div class="input-group mb-3 col-md">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="p2">Player 2</label>
+        </div>
+
+        <select class="custom-select" id="p2" name="p2">
+          <option value="">Choose...</option>
+          <% players.forEach(player => { %>
+            <option value="<%= player.id %>"<%= typeof p2 != 'undefined' && p2 === player.id ? ' selected' : '' %>><%= player.name %></option>
+          <% }) %>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group mb-3 col-md">
+        <input
+          class="form-control"
+          id="p1s"
+          aria-label="Score"
+          name="p1s"
+          pattern="\d*"
+          type="text"
+          value="<%= typeof p1s != 'undefined' ? p1s : '' %>"
+        >
+
+        <div class="input-group-prepend input-group-both">
+          <span class="input-group-text">Score</span>
+        </div>
+
+        <input
+          class="form-control"
+          id="p2s"
+          aria-label="Score"
+          name="p2s"
+          pattern="\d*"
+          type="text"
+          value="<%= typeof p2s != 'undefined' ? p2s : '' %>"
+        >
+      </div>
+   
+      <div class="input-group mb-3 col-md">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Map</span>
+        </div>
+
+        <select class="custom-select" id="map" name="map">
+          <option value="">Choose...</option>
+          <% maps.forEach(map => { %>
+            <option value="<%= map %>"><%= map %></option>
+          <% }) %>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-info addmatch__submit">
+      Submit result
+    </button>
+  </form>
+</div>
