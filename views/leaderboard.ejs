@@ -1,6 +1,6 @@
 <div class="leaderboard">
   <table class="table table-striped">
-    <thead class="thead-dark">
+    <thead class="thead-light">
       <tr>
         <th class="leaderboard-heading__rank heading center-col">#</th>
         <th class="leaderboard-heading__player heading" style="width: 20%;">Name</th>
@@ -28,8 +28,7 @@
               <% } %>
             </td>
             <td class="leaderboard__player">
-              <span class="mobile-hide"><%= player.name %></span>
-              <span class="desktop-hide"><%= player.name %></span>
+              <%= player.name %>
             </td>
             <td class="center-col leaderboard__games-played mobile-hide"><%= player.stats.played %></td>
             <td class="center-col leaderboard__games-won"><%= player.stats.won %></td>

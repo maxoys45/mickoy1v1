@@ -1,5 +1,5 @@
 {
-  "name": "mouspong",
+  "name": "mickoy1v1",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -36,7 +36,6 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^1.12.1",
     "gulp-uglify": "^3.0.0",
-    "gulp-watch": "^4.3.11",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",

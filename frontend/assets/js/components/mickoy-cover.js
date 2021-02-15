@@ -1,9 +1,9 @@
 /**
- * Mous Cover
+ * Mickoy Cover
  * ------------------------------------------------------------------------------
- * Component for showing and hiding the mous cover on page change.
+ * Component for showing and hiding the mickoy cover on page change.
  *
- * @namespace mousCover
+ * @namespace mickoyCover
  */
 import { on } from '../helpers/utils'
 import cssClasses from '../helpers/cssClasses'
@@ -12,8 +12,8 @@ import cssClasses from '../helpers/cssClasses'
  * Global variables
  */
 const selectors = {
-  cover: '[mous-cover]',
-  mainLinks: '[mous-cover-link]',
+  cover: '[mickoy-cover]',
+  mainLinks: '[mickoy-cover-link]',
 }
 
 export default () => {
@@ -45,7 +45,7 @@ export default () => {
   }
 
   /**
-   * Hide the mous cover.
+   * Hide the mickoy cover.
    */
   const hideCover = () => {
     setTimeout(() => {
@@ -54,7 +54,7 @@ export default () => {
   }
 
   /**
-   * Show the mous cover.
+   * Show the mickoy cover.
    */
   const showCover = () => {
     nodes.cover.classList.add(cssClasses.active)

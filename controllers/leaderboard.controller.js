@@ -126,26 +126,6 @@ const sortUsersByElo = (users) => {
 }
 
 /**
- * Add shortened version of name to each user for use on small screens.
- * @param {Array} users
- */
-const formatShortNames = (users) => {
-  return new Promise(resolve => {
-    const usersWithShortNames = []
-
-    users.forEach(user => {
-      const nameSplit = user.name.split(' ')
-
-      user.shortName = `${nameSplit[0]} ${nameSplit[1][0]}`
-
-      usersWithShortNames.push(user)
-    })
-
-    resolve(usersWithShortNames)
-  })
-}
-
-/**
  * Take each users form array and limit to the last 5 entries.
  * @param {Array} users the users array with winning percentage property.
  */
@@ -206,7 +186,6 @@ const populateLeaderboard = async () => {
     users = await addStatsToUsers(users)
     users = await addWinPercentToUsers(users)
     users = await sortUsersByElo(users)
-    // users = await formatShortNames(users)
     users = await limitUsersForm(users)
     users = await splitIntoMinimumPlayed(users)
 

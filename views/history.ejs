@@ -11,7 +11,7 @@
 
 <div class="history">
   <table class="table table-striped">
-    <thead class="thead-dark">
+    <thead class="thead-light">
       <tr>
         <th class="heading" scope="col">Date</th>
         <th class="heading" scope="col">Player 1</th>
@@ -28,13 +28,11 @@
             <span class="desktop-hide"><%= match.shortDate %></span>
           </td>
           <td class="history__col">
-            <span class="mobile-hide"><%= match.p1.id.name %></span>
-            <span class="desktop-hide"><%= match.p1.id.shortName %></span>
+            <%= match.p1.id.name %>
           </td>
           <td class="history__col"><%= match.p1.score %> : <%= match.p2.score %></td>
           <td class="history__col<%= deletableMatch ? ' history__col--deletable' : '' %>">
-            <span class="mobile-hide"><%= match.p2.id.name %></span>
-            <span class="desktop-hide"><%= match.p2.id.shortName %></span>
+            <span><%= match.p2.id.name %></span>
 
             <% if (user && user._id.equals(match.created_by) && index === 0) { %>
               <button class="remove-match"  data-toggle="modal" data-target="#deleteModal">

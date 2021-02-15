@@ -14,11 +14,15 @@ html {
   }
 }
 
+div {
+  display: block;
+}
+
 body {
-  color: $COLOR_DARK;
+  color: $COLOR_WHITE;
   font-size: $FONTSIZE_DEFAULT;
   font-family: $FONT_DEFAULT;
-  background-color: $COLOR_LIGHT;
+  background-color: $COLOR_DARKER;
 
   &::after {
     @include bp($SCR_MEDIUM, max-width) {
