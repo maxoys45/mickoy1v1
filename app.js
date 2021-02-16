@@ -24,7 +24,7 @@ const app = express()
 func(passport)
 
 // Connect to Mongo
-mongoose.connect(process.env.MONGODB_URI_DEV, {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
@@ -44,13 +44,13 @@ app.use(express.urlencoded({ extended: false }))
 
 // Express session
 app.use(session({
-  secret: 'keyboard catoys45',
+  secret: process.env.EXPRESS_SECRET,
   resave: true,
   saveUninitialized: true,
   cookie: {
     secure: false,
-    maxAge: 86400000 // 24 hours
-  }
+    maxAge: 86400000, // 24 hours
+  },
 }))
 
 // Passport middleware
