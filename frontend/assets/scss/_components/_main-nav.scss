@@ -30,7 +30,7 @@
     }
 
     @include bp($SCR_MEDIUM, max-width) {
-      flex: 1 0 percentage(1 / 3);
+      flex: 1 0 percentage(1 / 4);
 
       &#{&}--history {
         order: 1;
@@ -54,7 +54,11 @@
     align-items: center;
 
     &:not(.btn) {
-      color: $COLOR_WHITE;
+      color: $COLOR_DARKER;
+      
+      @include bp($SCR_MEDIUM) {
+        color: $COLOR_WHITE;
+      }
 
       &:hover {
         color: $COLOR_SUCCESS;
@@ -65,7 +69,7 @@
     @include bp($SCR_MEDIUM, max-width) {
       flex-direction: column;
       flex-grow: 1;
-      padding: 1rem;
+      padding: 1rem .5rem;
       text-align: center;
       border-radius: 0;
     }
@@ -82,6 +86,7 @@
   &__text {
     @include bp($SCR_MEDIUM, max-width) {
       font-size: .8em;
+      margin-top: 5px;
     }
   }
 }
