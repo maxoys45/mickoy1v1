@@ -24,7 +24,7 @@ const app = express()
 func(passport)
 
 // Connect to Mongo
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(process.env.MONGODB_URI_DEV, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false

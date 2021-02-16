@@ -24,7 +24,7 @@
   &__item {
     display: flex;
 
-    &:last-of-type {
+    &#{&}--login {
       margin-left: auto;
     }
 
