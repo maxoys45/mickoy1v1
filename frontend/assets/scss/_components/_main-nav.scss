@@ -24,7 +24,8 @@
   &__item {
     display: flex;
 
-    &#{&}--login {
+    &#{&}--login,
+    &#{&}--new {
       margin-left: auto;
     }
 
