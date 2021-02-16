@@ -74,9 +74,9 @@ const handleErrors = (p1, p1s, p2, p2s, csmap) => {
     errors.push({ msg: 'Please enter both scores and the players.' })
   }
 
-  if (p1s === p2s) {
-    errors.push({ msg: 'Games cannot end in a draw.' })
-  }
+  // if (p1s === p2s) {
+  //   errors.push({ msg: 'Games cannot end in a draw.' })
+  // }
 
   if (p1s < 7 && p2s < 7) {
     errors.push({ msg: 'The scores entered are too low.' })
