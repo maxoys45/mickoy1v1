@@ -23,8 +23,15 @@ const app = express()
 // Passport config
 func(passport)
 
+// Determine which mongo URI to use
+let MONGO_URI = process.env.MONGODB_URI_DEV || ''
+
+if (process.env.PORT) {
+  MONGO_URI = process.env.MONGODB_URI
+}
+
 // Connect to Mongo
-mongoose.connect(process.env.MONGODB_URI_DEV, {
+mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
