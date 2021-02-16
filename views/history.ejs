@@ -14,6 +14,7 @@
     <thead class="thead-light">
       <tr>
         <th class="heading" scope="col">Date</th>
+        <th class="heading" scope="col">Map</th>
         <th class="heading" scope="col">Player 1</th>
         <th class="heading" scope="col">Score</th>
         <th class="heading" scope="col"<%- deletableMatch ? ' style="width: 35%;"' : '' %>>Player 2</th>
@@ -23,14 +24,22 @@
     <tbody>
       <% matches.forEach((match, index) => { %>
         <tr>
+          <!-- DATE -->
           <td class="history__col">
             <span class="mobile-hide"><%= match.formattedDate %></span>
             <span class="desktop-hide"><%= match.shortDate %></span>
           </td>
+          <!-- MAP -->
+          <td class="history__col">
+            <%= match.csmap %>
+          </td>
+          <!-- P1 -->
           <td class="history__col">
             <%= match.p1.id.name %>
           </td>
+          <!-- SCORE -->
           <td class="history__col"><%= match.p1.score %> : <%= match.p2.score %></td>
+          <!-- P2 -->
           <td class="history__col<%= deletableMatch ? ' history__col--deletable' : '' %>">
             <span><%= match.p2.id.name %></span>
 

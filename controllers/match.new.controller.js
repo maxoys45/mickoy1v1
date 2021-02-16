@@ -67,7 +67,7 @@ const addMatchesToUsers = async (p1, p2, matchId) => {
 /**
  * Check the match entered for any errors.
  */
-const handleErrors = (p1, p1s, p2, p2s, map) => {
+const handleErrors = (p1, p1s, p2, p2s, csmap) => {
   let errors = []
 
   if (!p1 || !p1s || !p2 || !p2s) {
@@ -98,7 +98,7 @@ const handleErrors = (p1, p1s, p2, p2s, map) => {
     errors.push({ msg: 'You cannot play yourself.' })
   }
 
-  if (!map) {
+  if (!csmap) {
     errors.push({ msg: 'You must choose a map.' })
   }
 
@@ -147,21 +147,22 @@ const calculateElo = async (req) => {
  * Add a new match.
  */
 export const addNewMatch = async (req, res) => {
-  const { p1, p1s, p2, p2s, map, created_by } = req.body
+  const { p1, p1s, p2, p2s, csmap, created_by } = req.body
 
-  const errors = handleErrors(p1, p1s, p2, p2s, map)
+  const errors = handleErrors(p1, p1s, p2, p2s, csmap)
 
   if (errors.length) {
     const players = await getPlayersList(req)
 
     res.render('addmatch', {
       players,
+      maps,
       errors,
       p1,
       p1s,
       p2,
       p2s,
-      map,
+      csmap,
     })
   } else {
     const newMatch = new Match({
@@ -171,7 +172,7 @@ export const addNewMatch = async (req, res) => {
       'p2.id': p2,
       'p2.score': p2s,
       'p2.winner': Number(p2s) > Number(p1s),
-      map,
+      csmap,
       created_by,
     })
 

@@ -1,3 +1,4 @@
+import dotenv from 'dotenv'
 import express from 'express'
 import expressLayouts from 'express-ejs-layouts'
 import flash from 'connect-flash'
@@ -5,7 +6,6 @@ import mongoose from 'mongoose'
 import passport from 'passport'
 import session from 'express-session'
 
-import db from './config/keys'
 import func from './config/passport'
 
 import leaderboardRouter from './routes/leaderboard.route'
@@ -14,13 +14,17 @@ import matchRouter from './routes/matches.route'
 
 import { defaultResVars } from './middleware/res.vars'
 
+// Init dotenv
+dotenv.config()
+
+// App
 const app = express()
 
 // Passport config
 func(passport)
 
 // Connect to Mongo
-mongoose.connect(db, {
+mongoose.connect(process.env.MONGODB_URI_DEV, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false

@@ -64,10 +64,10 @@
           <span class="input-group-text">Map</span>
         </div>
 
-        <select class="custom-select" id="map" name="map">
+        <select class="custom-select" id="csmap" name="csmap">
           <option value="">Choose...</option>
           <% maps.forEach(map => { %>
-            <option value="<%= map %>"><%= map %></option>
+            <option value="<%= map %>"<%= (typeof csmap != 'undefined' && csmap === map) ? ' selected' : '' %>><%= map %></option>
           <% }) %>
         </select>
       </div>

@@ -29,7 +29,7 @@ const MatchSchema = new mongoose.Schema({
       type: Boolean,
     }
   },
-  map: {
+  csmap: {
     type: mongoose.Schema.Types.String,
     required: true,
   },
