@@ -1,17 +1,15 @@
 import EloRank from 'elo-rank'
 
 import { Match } from '../models/match.model'
+import { Map } from '../models/map.model'
 import { User } from '../models/user.model'
 
 import { numDifference } from '../helpers/utils'
 
-// Temp Map pool
-const maps = ['awp_india', 'aim_deagle']
-
 /**
- * Get a list of the opponents.
+ * Get a list of the players.
  */
-const getPlayersList = req => {
+const getPlayersList = () => {
   return new Promise(resolve => {
     User
       .find({})
@@ -26,9 +24,29 @@ const getPlayersList = req => {
 }
 
 /**
+ * Get a list of the previously played maps.
+ */
+const getMapList = () => {
+  return new Promise(resolve => {
+    Map
+      .find({})
+      .sort({ name: 1 })
+      .exec((err, maps) => {
+        if (err) throw err
+        
+        console.log('moo', maps)
+        resolve(maps)
+        return
+    })
+  })
+}
+
+/**
  * Render the match history template.
  */
-export const getNewMatch = (req, res) => {
+export const getNewMatch = async (req, res) => {
+  const maps = await getMapList()
+
   getPlayersList(req)
     .then(players => {
       res.render('addmatch', {
@@ -144,6 +162,23 @@ const calculateElo = async (req) => {
 }
 
 /**
+ * Add map to list if it doesn't already exist.
+ */
+const addUniqueMap = async csmap => {
+  Map
+    .findOne({csmap}, (err, existing) => {
+      if (err) console.error(err)
+
+      if (existing) {
+        return
+      }
+
+      const newMap = new Map({ csmap })
+      newMap.save()
+    })
+}
+
+/**
  * Add a new match.
  */
 export const addNewMatch = async (req, res) => {
@@ -152,7 +187,8 @@ export const addNewMatch = async (req, res) => {
   const errors = handleErrors(p1, p1s, p2, p2s, csmap)
 
   if (errors.length) {
-    const players = await getPlayersList(req)
+    const players = await getPlayersList()
+    const maps = await getMapList()
 
     res.render('addmatch', {
       players,
@@ -162,7 +198,6 @@ export const addNewMatch = async (req, res) => {
       p1s,
       p2,
       p2s,
-      csmap,
     })
   } else {
     const newMatch = new Match({
@@ -177,6 +212,7 @@ export const addNewMatch = async (req, res) => {
     })
 
     await newMatch.save()
+    await addUniqueMap(csmap)
     await addMatchesToUsers(p1, p2, newMatch.id)
     await calculateElo(req)
 
