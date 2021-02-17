@@ -30,6 +30,10 @@ var cfg = {
     src: './frontend/assets/fonts/**/*',
     dist: './public/assets/fonts/',
   },
+  files: {
+    src: './frontend/assets/files/**/*',
+    dist: './public/assets/files/',
+  },
   vendor: {
     css: {
       src: './frontend/assets/vendor/css/**/*.css',
@@ -102,6 +106,13 @@ function copyFonts() {
     .pipe(browserSync.stream())
 }
 
+// FILES
+function copyFiles() {
+  return src(cfg.files.src)
+    .pipe(dest(cfg.files.dist))
+    .pipe(browserSync.stream())
+}
+
 // BROWSER SYNC SERVE
 function browserSyncServe(cb) {
   browserSync.init({
@@ -122,14 +133,14 @@ function browserSyncReload(cb) {
 // WATCHER
 function watchTask() {
   watch([cfg.templates.src], browserSyncReload)
-  watch([cfg.scripts.src, cfg.styles.src, cfg.vendor.css.src, cfg.img.src, cfg.fonts.src],
+  watch([cfg.scripts.src, cfg.styles.src, cfg.vendor.css.src, cfg.img.src, cfg.fonts.src, cfg.files.src],
     series(
-      parallel(jsRebuild, scssRebuild, vendorCSS, copyImages, copyFonts, browserSyncReload)
+      parallel(jsRebuild, scssRebuild, vendorCSS, copyImages, copyFonts, copyFiles, browserSyncReload)
     ))
 }
 
 exports.default = series(
-  parallel(jsRebuild, scssRebuild, vendorCSS, copyImages, copyFonts),
+  parallel(jsRebuild, scssRebuild, vendorCSS, copyImages, copyFonts, copyFiles),
   browserSyncServe,
   watchTask
 )

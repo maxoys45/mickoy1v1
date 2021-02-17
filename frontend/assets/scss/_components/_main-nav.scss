@@ -30,11 +30,7 @@
     }
 
     @include bp($SCR_MEDIUM, max-width) {
-      flex: 1 0 percentage(1 / 4);
-
-      &#{&}--history {
-        order: 1;
-      }
+      flex: 1 0 percentage(1 / 5);
 
       &#{&}--logout {
         display: none;

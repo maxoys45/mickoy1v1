@@ -85,6 +85,10 @@ app.use('/', leaderboardRouter)
 app.use('/users', userRouter)
 app.use('/matches', matchRouter)
 
+app.use('/help', (req, res) => {
+  res.render('help')
+})
+
 // Listen to server
 const PORT = process.env.PORT || 5000
 
