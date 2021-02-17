@@ -63,13 +63,21 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Map</span>
         </div>
-
-        <select class="custom-select" id="csmap" name="csmap">
+        
+        <input
+          class="custom-select"
+          id="csmap"
+          type="text"
+          list="maplist"
+          name="csmap"
+          value="<%= typeof csmap != 'undefined' ? csmap : '' %>"
+        >
+        <datalist id="maplist">
           <option value="">Choose...</option>
           <% maps.forEach(map => { %>
-            <option value="<%= map %>"<%= (typeof csmap != 'undefined' && csmap === map) ? ' selected' : '' %>><%= map %></option>
+            <option value="<%= map %>"><%= map %></option>
           <% }) %>
-        </select>
+        </datalist>
       </div>
     </div>
 
