@@ -92,19 +92,19 @@ const handleErrors = (p1, p1s, p2, p2s, csmap) => {
     errors.push({ msg: 'Please enter both scores and the players.' })
   }
 
-  // if (p1s === p2s) {
-  //   errors.push({ msg: 'Games cannot end in a draw.' })
-  // }
+  if (p1s === p2s) {
+    errors.push({ msg: 'Games cannot end in a draw.' })
+  }
 
   if (p1s < 7 && p2s < 7) {
     errors.push({ msg: 'The scores entered are too low.' })
   }
 
-  // if (p1s >= 6 && p2s >= 6 && numDifference(p1s, p2s) !== 2) {
-  //   errors.push({ msg: 'In overtime, a match must finish with a difference of 2.' })
-  // }
+  if (p1s >= 6 && p2s >= 6 && (numDifference(p1s, p2s) !== 2 || numDifference(p1s, p2s) !== 3)) {
+    errors.push({ msg: 'Invalid overtime score.' })
+  }
 
-  // if (p1s > 7 && p2s < 5 || p1s < 5 && p2s > 7) {
+  // if (p1s >= 9 && p2s < 6 || p1s < 6 && p2s >= 9) {
   //   errors.push({ msg: 'You cannot score more than 7 points unless in overtime.' })
   // }
 
