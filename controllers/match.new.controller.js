@@ -100,7 +100,7 @@ const handleErrors = (p1, p1s, p2, p2s, csmap) => {
     errors.push({ msg: 'The scores entered are too low.' })
   }
 
-  if (p1s >= 6 && p2s >= 6 && (numDifference(p1s, p2s) !== 2 || numDifference(p1s, p2s) !== 3)) {
+  if (p1s >= 6 && p2s >= 6 && (numDifference(p1s, p2s) !== 2 && numDifference(p1s, p2s) !== 3)) {
     errors.push({ msg: 'Invalid overtime score.' })
   }
 
