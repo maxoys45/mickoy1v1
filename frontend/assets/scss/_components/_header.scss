@@ -19,5 +19,10 @@
 
   &__logo-img {
     height: 3rem;
+
+    @include bp($SCR_MEDIUM, $until: $SCR_BOOT_992) {
+      width: 165px;
+      height: auto;
+    }
   }
 }

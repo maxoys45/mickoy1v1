@@ -1,7 +1,7 @@
 <style>
   :root {
     --cover-timing: 0.25s;
-    --mickoy: #2d4b4c;
+    --black: #000000;
   }
 
   .mickoy-cover {
@@ -11,7 +11,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: var(--mickoy);
+    background-color: var(--black);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +27,8 @@
   .mickoy-cover__img {
     transition: transform var(--cover-timing) ease-in-out;
     width: 100%;
-    max-width: 350px;
+    max-width: 960px;
+    padding: 20px;
   }
 
   .mickoy-cover.is-active .mickoy-cover__img {
