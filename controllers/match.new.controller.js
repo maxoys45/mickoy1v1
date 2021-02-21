@@ -34,7 +34,6 @@ const getMapList = () => {
       .exec((err, maps) => {
         if (err) throw err
         
-        console.log('moo', maps)
         resolve(maps)
         return
     })

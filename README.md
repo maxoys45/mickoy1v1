@@ -9,6 +9,5 @@ db.users.update({}, { $set: { "elo.current" : 1000, "elo.previous" : [] }}, fals
 db.users.update({}, { $unset: { "stats" : "" }}, false, true)
 
 // TODOS:
-// add map to match history
 // add fav map to leaderboard maybe?
 // page some times has browser loading spinner, requires manual reload to sort.

@@ -40,7 +40,7 @@ const calculateMatchStats = (user, match, stats) => {
  * Add users stats to each user by looking through their previous matches.
  * @param {Array} users
  */
-const addStatsToUsers = (users) => {
+const addStatsToUsers = users => {
   return new Promise(resolve => {
     const updatedUsers = []
 
